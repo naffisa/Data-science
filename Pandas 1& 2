@@ -1,0 +1,77 @@
+#Create a CSV file of 15 holiday destinations for a website 
+import pandas as pd
+HD = pd.read_csv("HolidayDestinations.csv")
+HD.index = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O')
+print(HD)
+*******************************************
+# 1.Add in a column of destinations
+print(HD[['Destination ']])
+******************************************
+# 2.Add in a column that shows feedback score out of 10 for that destination
+print(HD[['Feedback score out of 10']])
+*******************************************
+# 3.Add in a column for average hotel star rating for those destinations 
+print(HD[['Avarage Hotel Star Rating out of 10']])
+*********************************************
+# 4.Add in a column for number of all-inclusive hotels within each destination
+print(HD[['All Inclusive Hotels']])
+******************************************
+# 5.Add in the most visited city in each destinationNote: the data that you use to create your csv file can be hypothetical.
+print(HD[['Most visited city']])
+****************************************************
+#How many rows and columns are there in your file?
+HD.shape
+************************************************
+# 2.Print row 3-8 ( using iloc/loc).
+HD.iloc[3:8]
+HD.loc['D':'I']
+**************************************************
+# 3.Find the mean number of all-inclusive hotels across all destinations.
+import pandas as pd
+HolidayDestinations = pd.read_csv("HolidayDestinations.csv")
+HolidayDestinations.index = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O')
+# 4.Find the lowest scoring destination.
+HolidayDestinations.mean(axis=('index'))
+****************************************************
+#4.Find the lowest scoring destination.
+import pandas as pd
+HD['Avarage Hotel Star Rating out of 10'].idxmin()
+HD.loc['M']
+*************************************************
+# 5.Find the highest scoring destination.
+import pandas as pd
+HD[ 'Avarage Hotel Star Rating out of 10'].idxmax()
+HD.loc['B']
+*****************************************************
+# 6.Find all the destinations where there are more than 9 all-inclusive hotels.
+import pandas as pd
+HD = pd.read_csv("HolidayDestinations.csv")
+HD.index = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O')
+#print(HD)
+#HD['All Inclusive Hotels']> 9
+x = HD[HD['All Inclusive Hotels'] > 9]
+print(x)
+******************************************************************
+# 7.Filter the data by score above 8.  
+import pandas as pd
+x = HD[HD['All Inclusive Hotels'] > 8] 
+y = HD[HD['Avarage Hotel Star Rating out of 10'] > 8] 
+print(y,x)
+*****************************************************************
+# 8.Filter the data score below 2 ( I need to know if these destinations should be removed or there is a problem)  
+import pandas as pd
+HD = pd.read_csv("HolidayDestinations.csv")
+HD.index = ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O')
+x =HD[HD['All Inclusive Hotels'] < 2] 
+x = HD[HD['Avarage Hotel Star Rating out of 10'] < 2] 
+print(x)
+**********************************************************************
+# 1.Is there a correlation between number of all-inclusive hotels and score?
+from matplotlib import pyplot as plt
+import pandas as pd
+HD = pd.read_csv("HolidayDestinations.csv")
+plt.plot(HD['All Inclusive Hotels'], HD['Avarage Hotel Star Rating out of 10'], 'o')
+plt.title('Correlation between number of all-inclusive hotels and score')
+plt.xlabel('All Inclusive Hotels')
+plt.ylabel('Avarage Hotel Star Rating out of 10')
+*********************************************************
