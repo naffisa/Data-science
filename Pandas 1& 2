@@ -54,9 +54,14 @@ print(x)
 ******************************************************************
 # 7.Filter the data by score above 8.  
 import pandas as pd
-x = HD[HD['All Inclusive Hotels'] > 8] 
-y = HD[HD['Avarage Hotel Star Rating out of 10'] > 8] 
-print(y,x)
+HD = pd.read_csv("HolidayDestinations.csv")
+myfilter = HD['Avarage Hotel Star Rating out of 10'] > 8
+myfilter1 = HD['All Inclusive Hotels'] > 8
+
+filter = HD[myfilter]
+filter
+#filter1 = HD[myfilter1]
+#filter1
 *****************************************************************
 # 8.Filter the data score below 2 ( I need to know if these destinations should be removed or there is a problem)  
 import pandas as pd
