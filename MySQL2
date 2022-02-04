@@ -1,0 +1,103 @@
+-- CREATE TABLE 1 (5 FIELDS AND 10 RECORDS)
+
+CREATE DATABASE persons;
+USE persons;
+CREATE TABLE persons (personsID INT PRIMARY KEY, 
+firstName VARCHAR(40) NOT NULL, 
+lastName VARCHAR (40) Not Null,
+age int unique);
+EXPLAIN persons;
+ALTER TABLE persons
+ADD COLUMN nationality VARCHAR (20);
+
+explain persons;
+
+-- 10 RECORDS
+
+INSERT INTO persons (personsID, firstName, lastName, age, nationality)
+VALUES ('1', 'Hansen', 'Ola', '30', 'Swedish'),
+('2', 'Svendson','Tove'	, '23', 'Danish'),
+('3', 'Pettersen', 'Kari', '20', 'English'),
+('4', 'Ahmed', 'Ali', '25', 'Syrian'),
+('5', 'Mona', 'Sami', '35', 'Lebanese'),
+('6', 'jack', 'weatherly', '31', 'Scotish'),
+('7', 'Amal', 'Ali', '26', 'Yemeni'),
+('8', 'Zara', 'Jama', '33', 'Somali'),
+('9', 'Sali', 'Smith', '29', 'English'),
+('10', 'Adam', 'Asher', '21', 'Russian');
+
+SELECT * FROM persons;
+
+-- UPDATE A record
+
+UPDATE persons
+SET firstName = 'Sarah'
+WHERE personsID = 5;
+
+SELECT * FROM persons;
+
+-- DELETE A record
+
+DELETE FROM persons
+WHERE personsID = 2;
+
+SELECT * FROM persons;
+
+-- CREATE SECOND TABLE 
+
+CREATE TABLE  orders (ordersID  int PRIMARY KEY, 
+ordersNumber int,
+personID INT,
+price INT);
+EXPLAIN orders;
+ALTER TABLE orders
+ADD COLUMN cashierID INT;
+ALTER TABLE orders
+DROP COLUMN personID;
+ALTER TABLE orders 
+ADD COLUMN personsID INT;
+
+INSERT INTO orders (ordersID, ordersNumber, personsID, price , cashierID)
+VALUES ('1', '77895', '1','5', '5'),
+('2', '44678', '2','10', '5'),
+('3', '22456', '3','16', '5'),
+('4', '24562', '4','20', '5');
+
+SELECT * FROM orders;
+
+INSERT INTO orders  (ordersID, ordersNumber, personsID, price , cashierID)
+VALUES ('5', '33546', '5','12', '3'),
+('6', '44561', '6','33', '2'),
+('7', '44678', '7','10', '4'),
+('8', '76453', '8','10', '5'),
+('9', '12389', '9','10', '2'),
+('10', '67098', '10','10', '1');
+
+SELECT * FROM orders;
+
+   -- joining tables (INNER JOIN)
+   
+SELECT * 
+FROM persons 
+INNER JOIN orders
+ON persons.personsID = orders.personsID;
+
+-- simple query 
+
+SELECT MAX(Price) AS price FROM orders;
+
+-- complex query
+
+-- complex query
+SELECT  nationality, cashierID, price
+FROM persons, orders 
+WHERE ordersID = '3';
+
+-- high to low
+SELECT COUNT(OrdersID), price
+FROM Orders
+GROUP BY personsID;
+
+-- Comparison 
+SELECT * FROM orders
+WHERE price < 17;
