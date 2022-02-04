@@ -1,0 +1,16 @@
+Q1: Createa database of your own choice. It must be  a meaningful/thoughtout database.
+CREATE DATABASE SCHOOL;
+USE school;
+
+
+Q2: 
+Create a table with a primary key and the correct datatypes. Include a minimum of 5 fields. View the table structure to make sure it is set up correctly.
+USE school;
+
+CREATE TABLE teacher (teacher_id INT PRIMARY KEY, 
+first_name VARCHAR(40) NOT NULL, 
+last_name VARCHAR (40) Not Null,
+language VARCHAR (3) NOT NULL,
+DOB DATE, 
+phone_no int unique);
+EXPLAIN teacher;
